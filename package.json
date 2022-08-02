@@ -1,0 +1,38 @@
+{
+  "name": "vue3-form-generator",
+  "private": false,
+  "version": "0.5.3",
+  "type": "module",
+  "main": "./dist/es.js",
+  "module": "./dist/umd.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "vue-tsc --noEmit && vite build",
+    "preview": "vite preview"
+  },
+  "files": [
+    "dist/*.*",
+    "src/*.*"
+  ],
+  "exports": {
+    ".": {
+      "import": "./dist/es.js",
+      "require": "./dist/umd.js"
+    },
+    "./dist/style.css": "./dist/style.css"
+  },
+  "devDependencies": {
+    "@types/lodash": "^4.14.182",
+    "@vitejs/plugin-vue": "^3.0.1",
+    "fecha": "^4.2.3",
+    "lodash": "^4.17.21",
+    "pug": "^3.0.2",
+    "requirejs": "^2.3.6",
+    "sass": "^1.53.0",
+    "typescript": "^4.6.4",
+    "vite": "^3.0.0",
+    "vite-plugin-import-context": "^1.0.0-rc.1",
+    "vue": "^3.2.37",
+    "vue-tsc": "^0.38.4"
+  }
+}
