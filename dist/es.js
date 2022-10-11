@@ -1,4 +1,5 @@
 import { resolveDirective, withDirectives, openBlock, createElementBlock, normalizeClass, vModelCheckbox, Fragment, renderList, createElementVNode, createTextVNode, toDisplayString, createCommentVNode, vModelSelect, vModelText, vShow, normalizeStyle, resolveComponent, createBlock, withCtx, ref, resolveDynamicComponent, mergeProps } from "vue";
+import { KTooltip } from "@kong/kongponents";
 var commonjsGlobal = typeof globalThis !== "undefined" ? globalThis : typeof window !== "undefined" ? window : typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : {};
 var lodash = { exports: {} };
 /**
@@ -7993,7 +7994,7 @@ const fieldComponents = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.def
 const formGroup_vue_vue_type_style_index_0_lang = "";
 const _sfc_main$1 = {
   name: "form-group",
-  components: fieldComponents,
+  components: { ...fieldComponents, KTooltip },
   mixins: [_sfc_main$o],
   emits: ["validated", "modelUpdated"],
   props: {
@@ -8082,25 +8083,27 @@ const _sfc_main$1 = {
 };
 const _hoisted_1$1 = ["for"];
 const _hoisted_2$1 = ["innerHTML"];
-const _hoisted_3$1 = {
-  key: 0,
+const _hoisted_3$1 = /* @__PURE__ */ createElementVNode("div", {
+  tabindex: "0",
+  role: "button",
   class: "help"
-};
-const _hoisted_4$1 = /* @__PURE__ */ createElementVNode("i", { class: "icon" }, null, -1);
-const _hoisted_5 = ["innerHTML"];
-const _hoisted_6 = { class: "field-wrap" };
-const _hoisted_7 = {
+}, [
+  /* @__PURE__ */ createElementVNode("i", { class: "icon" })
+], -1);
+const _hoisted_4$1 = { class: "field-wrap" };
+const _hoisted_5 = {
   key: 0,
   class: "buttons"
 };
-const _hoisted_8 = ["onClick", "textContent", "type"];
-const _hoisted_9 = ["innerHTML"];
-const _hoisted_10 = {
+const _hoisted_6 = ["onClick", "textContent", "type"];
+const _hoisted_7 = ["innerHTML"];
+const _hoisted_8 = {
   key: 2,
   class: "errors help-block"
 };
-const _hoisted_11 = ["innerHTML"];
+const _hoisted_9 = ["innerHTML"];
 function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
+  const _component_KTooltip = resolveComponent("KTooltip");
   return openBlock(), createElementBlock("div", {
     class: normalizeClass(["form-group", _ctx.getFieldRowClasses($props.field)])
   }, [
@@ -8112,15 +8115,22 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
       createElementVNode("span", {
         innerHTML: $props.field.label
       }, null, 8, _hoisted_2$1),
-      $props.field.help ? (openBlock(), createElementBlock("span", _hoisted_3$1, [
-        _hoisted_4$1,
-        createElementVNode("div", {
-          class: "helpText",
-          innerHTML: $props.field.help
-        }, null, 8, _hoisted_5)
-      ])) : createCommentVNode("", true)
+      $props.field.help ? (openBlock(), createBlock(_component_KTooltip, {
+        key: 0,
+        "max-width": "300",
+        placement: "top",
+        trigger: "click"
+      }, {
+        content: withCtx(() => [
+          createTextVNode(toDisplayString($props.field.help), 1)
+        ]),
+        default: withCtx(() => [
+          _hoisted_3$1
+        ]),
+        _: 1
+      })) : createCommentVNode("", true)
     ], 10, _hoisted_1$1)) : createCommentVNode("", true),
-    createElementVNode("div", _hoisted_6, [
+    createElementVNode("div", _hoisted_4$1, [
       (openBlock(), createBlock(resolveDynamicComponent($options.getFieldType($props.field)), mergeProps(_ctx.$attrs, {
         ref: "child",
         vfg: $props.vfg,
@@ -8131,7 +8141,7 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
         onModelUpdated: $options.onModelUpdated,
         onValidated: $options.onFieldValidated
       }), null, 16, ["vfg", "disabled", "model", "schema", "formOptions", "onModelUpdated", "onValidated"])),
-      $options.buttonVisibility($props.field) ? (openBlock(), createElementBlock("div", _hoisted_7, [
+      $options.buttonVisibility($props.field) ? (openBlock(), createElementBlock("div", _hoisted_5, [
         (openBlock(true), createElementBlock(Fragment, null, renderList($props.field.buttons, (btn, index) => {
           return openBlock(), createElementBlock("button", {
             onClick: ($event) => $options.buttonClickHandler(btn, $props.field, $event),
@@ -8139,7 +8149,7 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
             key: index,
             textContent: toDisplayString(btn.label),
             type: $options.getButtonType(btn)
-          }, null, 10, _hoisted_8);
+          }, null, 10, _hoisted_6);
         }), 128))
       ])) : createCommentVNode("", true)
     ]),
@@ -8147,13 +8157,13 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
       key: 1,
       class: "hint",
       innerHTML: $options.fieldHint($props.field)
-    }, null, 8, _hoisted_9)) : createCommentVNode("", true),
-    $options.fieldErrors($props.field).length > 0 ? (openBlock(), createElementBlock("div", _hoisted_10, [
+    }, null, 8, _hoisted_7)) : createCommentVNode("", true),
+    $options.fieldErrors($props.field).length > 0 ? (openBlock(), createElementBlock("div", _hoisted_8, [
       (openBlock(true), createElementBlock(Fragment, null, renderList($options.fieldErrors($props.field), (error, index) => {
         return openBlock(), createElementBlock("span", {
           key: index,
           innerHTML: error
-        }, null, 8, _hoisted_11);
+        }, null, 8, _hoisted_9);
       }), 128))
     ])) : createCommentVNode("", true)
   ], 2);

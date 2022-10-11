@@ -15,7 +15,7 @@ export default defineConfig({
           vue: 'Vue',
         },
       },
-      external: ['vue']
+      external: ['vue', '@kong/kongponents']
     },
     minify: false,
     lib: {

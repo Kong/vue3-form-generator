@@ -2,10 +2,23 @@
 	<div class="form-group" :class="getFieldRowClasses(field)">
 		<label v-if="fieldTypeHasLabel(field)" :for="getFieldID(field)" :class="field.labelClasses">
 			<span v-html="field.label"></span>
-			<span v-if='field.help' class="help">
-				<i class="icon"/>
-				<div class="helpText" v-html='field.help'></div>
-			</span>
+      <KTooltip
+        v-if="field.help"
+        max-width="300"
+        placement="top"
+        trigger="click"
+      >
+        <div
+          tabindex="0"
+          role="button"
+          class="help"
+        >
+          <i class="icon" />
+        </div>
+        <template #content>
+          {{ field.help }}
+        </template>
+      </KTooltip>
 		</label>
 
 		<div class="field-wrap">
@@ -29,9 +42,11 @@
   import formMixin from "./formMixin.vue";
   import * as fieldComponents from "./utils/fieldsLoader";
   import { ref } from "vue";
+  import { KTooltip } from '@kong/kongponents';
+
   export default {
     name: "form-group",
-    components: fieldComponents,
+    components: { ...fieldComponents, KTooltip },
     mixins: [formMixin],
     emits: ["validated", "modelUpdated"],
     props: {
@@ -143,6 +158,9 @@ $errorColor: #f00;
 		& > :first-child {
 			display: inline-block;
 		}
+    & > div[role="button"] {
+      display: inline-block;
+    }
 	}
 
 	&.featured {

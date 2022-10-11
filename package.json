@@ -34,5 +34,8 @@
     "vite-plugin-import-context": "^1.0.0-rc.1",
     "vue": "^3.2.37",
     "vue-tsc": "^0.38.4"
+  },
+  "peerDependencies": {
+    "@kong/kongponents": "^8.0.0-beta.7"
   }
 }

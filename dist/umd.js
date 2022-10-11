@@ -1,6 +1,6 @@
 (function(global2, factory) {
-  typeof exports === "object" && typeof module !== "undefined" ? module.exports = factory(require("vue")) : typeof define === "function" && define.amd ? define(["vue"], factory) : (global2 = typeof globalThis !== "undefined" ? globalThis : global2 || self, global2["vue-form-generator"] = factory(global2.Vue));
-})(this, function(vue) {
+  typeof exports === "object" && typeof module !== "undefined" ? module.exports = factory(require("vue"), require("@kong/kongponents")) : typeof define === "function" && define.amd ? define(["vue", "@kong/kongponents"], factory) : (global2 = typeof globalThis !== "undefined" ? globalThis : global2 || self, global2["vue-form-generator"] = factory(global2.Vue, global2.kongponents));
+})(this, function(vue, kongponents) {
   "use strict";
   var commonjsGlobal = typeof globalThis !== "undefined" ? globalThis : typeof window !== "undefined" ? window : typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : {};
   var lodash = { exports: {} };
@@ -7996,7 +7996,7 @@
   const formGroup_vue_vue_type_style_index_0_lang = "";
   const _sfc_main$1 = {
     name: "form-group",
-    components: fieldComponents,
+    components: { ...fieldComponents, KTooltip: kongponents.KTooltip },
     mixins: [_sfc_main$o],
     emits: ["validated", "modelUpdated"],
     props: {
@@ -8085,25 +8085,27 @@
   };
   const _hoisted_1$1 = ["for"];
   const _hoisted_2$1 = ["innerHTML"];
-  const _hoisted_3$1 = {
-    key: 0,
+  const _hoisted_3$1 = /* @__PURE__ */ vue.createElementVNode("div", {
+    tabindex: "0",
+    role: "button",
     class: "help"
-  };
-  const _hoisted_4$1 = /* @__PURE__ */ vue.createElementVNode("i", { class: "icon" }, null, -1);
-  const _hoisted_5 = ["innerHTML"];
-  const _hoisted_6 = { class: "field-wrap" };
-  const _hoisted_7 = {
+  }, [
+    /* @__PURE__ */ vue.createElementVNode("i", { class: "icon" })
+  ], -1);
+  const _hoisted_4$1 = { class: "field-wrap" };
+  const _hoisted_5 = {
     key: 0,
     class: "buttons"
   };
-  const _hoisted_8 = ["onClick", "textContent", "type"];
-  const _hoisted_9 = ["innerHTML"];
-  const _hoisted_10 = {
+  const _hoisted_6 = ["onClick", "textContent", "type"];
+  const _hoisted_7 = ["innerHTML"];
+  const _hoisted_8 = {
     key: 2,
     class: "errors help-block"
   };
-  const _hoisted_11 = ["innerHTML"];
+  const _hoisted_9 = ["innerHTML"];
   function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
+    const _component_KTooltip = vue.resolveComponent("KTooltip");
     return vue.openBlock(), vue.createElementBlock("div", {
       class: vue.normalizeClass(["form-group", _ctx.getFieldRowClasses($props.field)])
     }, [
@@ -8115,15 +8117,22 @@
         vue.createElementVNode("span", {
           innerHTML: $props.field.label
         }, null, 8, _hoisted_2$1),
-        $props.field.help ? (vue.openBlock(), vue.createElementBlock("span", _hoisted_3$1, [
-          _hoisted_4$1,
-          vue.createElementVNode("div", {
-            class: "helpText",
-            innerHTML: $props.field.help
-          }, null, 8, _hoisted_5)
-        ])) : vue.createCommentVNode("", true)
+        $props.field.help ? (vue.openBlock(), vue.createBlock(_component_KTooltip, {
+          key: 0,
+          "max-width": "300",
+          placement: "top",
+          trigger: "click"
+        }, {
+          content: vue.withCtx(() => [
+            vue.createTextVNode(vue.toDisplayString($props.field.help), 1)
+          ]),
+          default: vue.withCtx(() => [
+            _hoisted_3$1
+          ]),
+          _: 1
+        })) : vue.createCommentVNode("", true)
       ], 10, _hoisted_1$1)) : vue.createCommentVNode("", true),
-      vue.createElementVNode("div", _hoisted_6, [
+      vue.createElementVNode("div", _hoisted_4$1, [
         (vue.openBlock(), vue.createBlock(vue.resolveDynamicComponent($options.getFieldType($props.field)), vue.mergeProps(_ctx.$attrs, {
           ref: "child",
           vfg: $props.vfg,
@@ -8134,7 +8143,7 @@
           onModelUpdated: $options.onModelUpdated,
           onValidated: $options.onFieldValidated
         }), null, 16, ["vfg", "disabled", "model", "schema", "formOptions", "onModelUpdated", "onValidated"])),
-        $options.buttonVisibility($props.field) ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_7, [
+        $options.buttonVisibility($props.field) ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_5, [
           (vue.openBlock(true), vue.createElementBlock(vue.Fragment, null, vue.renderList($props.field.buttons, (btn, index) => {
             return vue.openBlock(), vue.createElementBlock("button", {
               onClick: ($event) => $options.buttonClickHandler(btn, $props.field, $event),
@@ -8142,7 +8151,7 @@
               key: index,
               textContent: vue.toDisplayString(btn.label),
               type: $options.getButtonType(btn)
-            }, null, 10, _hoisted_8);
+            }, null, 10, _hoisted_6);
           }), 128))
         ])) : vue.createCommentVNode("", true)
       ]),
@@ -8150,13 +8159,13 @@
         key: 1,
         class: "hint",
         innerHTML: $options.fieldHint($props.field)
-      }, null, 8, _hoisted_9)) : vue.createCommentVNode("", true),
-      $options.fieldErrors($props.field).length > 0 ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_10, [
+      }, null, 8, _hoisted_7)) : vue.createCommentVNode("", true),
+      $options.fieldErrors($props.field).length > 0 ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_8, [
         (vue.openBlock(true), vue.createElementBlock(vue.Fragment, null, vue.renderList($options.fieldErrors($props.field), (error, index) => {
           return vue.openBlock(), vue.createElementBlock("span", {
             key: index,
             innerHTML: error
-          }, null, 8, _hoisted_11);
+          }, null, 8, _hoisted_9);
         }), 128))
       ])) : vue.createCommentVNode("", true)
     ], 2);
